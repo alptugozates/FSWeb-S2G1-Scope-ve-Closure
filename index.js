@@ -35,6 +35,13 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
   
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
 */
+    //skor1 de closure kullanılmaktadır skor2 de closure bulunmamaktadır. 
+    // skor1 in mantıklı olduğu durumlar; 
+    //Dışarıdan doğrudan müdahale edilmesini istemiyorsak ve birden fazla değişken bulunduruyorsak ve farklı şekillerde kullanacaksak her biri kendi closure ını içeren
+    //yapılar kullanarak ayrı ayrı yönetebiliriz. 
+    //skor2 nin mantıklı olduğu durumlar;
+    //Basit bir skor arttırma işlemi yapacaksak ya da tek bir skor değişkenini paylaşan yapılar varsa ve birden fazla yerden erişmemiz gerekiyorsa,
+    //skor2 daha mantıklı olacaktır.
 
 // skor1 kodları
 function skorArtirici() {
