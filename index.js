@@ -64,9 +64,12 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+    const randomScore = Math.floor(Math.random() * (25 - 10 + 1)) + 10
+    return randomScore;
 }
+  const randomScore = takimSkoru();
+  console.log(`Çeyrekte üretilen skor: ${randomScore}`);
 
 
 
@@ -86,8 +89,16 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(takimSkoru, ceyrekSayisi){
+  let EvSahibi = 0;
+  let KonukTakim = 0;
+  for(let i = 0; i < ceyrekSayisi; i++) {
+    const evSkor = Math.floor(Math.random() * 21) + 80;
+    const konukSkor = Math.floor(Math.random() * 21) + 80;
+    EvSahibi += evSkor;
+    KonukTakim += konukSkor;
+  }
+  return {EvSahibi, KonukTakim};
 }
 
 
@@ -109,10 +120,13 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
-
-}
+function periyotSkoru(takimSkoru,) {
+    const EvSahibi = takimSkoru("EvSahibi");
+    const KonukTakim = takimSkoru("KonukTakim");
+    return {
+      EvSahibi, KonukTakim
+    }
+} 
 
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
@@ -146,9 +160,23 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
-}
+function skorTabelasi(periyotSkoru, takimSkoru, ceyrekSayisi) {
+    const sonuclar = [];
+    let evSahibiSkor = 0;
+    let konukTakimSkor = 0;
+    for(let ceyrek = 0; ceyrek <= ceyrekSayisi; ceyrek++){
+      const evSahibiPuan = Math.floor(Math.random() * periyotSkoru + 1);
+      const konukTakimPuan = Math.floor(Math.random() * periyotSkoru + 1);
+      evSahibiSkor += evSahibiPuan;
+      konukTakimSkor += konukTakimPuan;
+      sonuclar.push(`Çeyrek ${ceyrek}: Ev Sahibi: ${evSahibiPuan} - Konuk Takım: ${konukTakimPuan}`);
+    }
+      if(evSahibiSkor === konukTakimSkor){
+        sonuclar.push(`Maç Sonucu: Ev Sahibi ${evSahibiSkor} - Konuk Takım ${konukTakimSkor}`);
+} else {
+  sonuclar.push(`Maç Sonucu: Ev Sahibi ${evSahibiSkor} - Konuk Takım ${konukTakimSkor}`);
+      } return sonuclar;   
+}  
 
 
 
@@ -167,5 +195,5 @@ module.exports = {
   takimSkoru,
   macSonucu,
   periyotSkoru,
-  skorTabelasi,
+  skorTabelasi
 }
